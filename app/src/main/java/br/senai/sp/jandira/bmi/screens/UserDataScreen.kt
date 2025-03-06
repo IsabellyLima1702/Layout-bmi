@@ -48,4 +48,4 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                 ),
                 modifier = Modifier
                     .padding(top = 80.dp)
-            )
+            )}
