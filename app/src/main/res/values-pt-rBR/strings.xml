@@ -4,4 +4,12 @@
         <string name="welcome">Bem-vindo!</string>
         <string name="your_name">Qual é o seu nome?</string>
         <string name="next">Próximo</string>
+        <string name="hello">Olá !</string>
+        <string name="men">Masculino</string>
+        <string name="woman">Feminino</string>
+        <string name="age">Idade</string>
+        <string name="weight">Peso</string>
+        <string name="height">Altura</string>
+        <string name="calculate">Calcular</string>
+        <string name="image">Image</string>
 </resources>
