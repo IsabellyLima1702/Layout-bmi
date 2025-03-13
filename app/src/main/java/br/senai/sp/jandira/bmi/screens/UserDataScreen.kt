@@ -101,7 +101,8 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                     Column (
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding()
+                            .padding(16.dp),
+                        verticalArrangement = Arrangement.SpaceBetween
 
                     ){
                         Row (
