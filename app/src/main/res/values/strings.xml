@@ -12,4 +12,6 @@
     <string name="height">Height</string>
     <string name="calculate">Calculate</string>
     <string name="image">Image</string>
+    <string name="result">Your BMI Result</string>
+    <string name="obesity">You have Class I Obesity</string>
 </resources>

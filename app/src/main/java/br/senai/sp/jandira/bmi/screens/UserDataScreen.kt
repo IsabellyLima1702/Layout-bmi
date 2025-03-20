@@ -48,14 +48,21 @@ import br.senai.sp.jandira.bmi.R
 @Composable
 fun UserDataScreen(modifier: Modifier = Modifier) {
 
-    var nameNumber = remember {
-        mutableStateOf("")
+    var nameOne = remember {
+        mutableStateOf("Age")
     }
+    var nameTwo = remember {
+        mutableStateOf("Weight")
+    }
+    var nameThree = remember {
+        mutableStateOf("Height")
+    }
+
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
+        .background(
                 brush = Brush.horizontalGradient(
                     listOf(
                         Color(0xFFC0EF7D),
@@ -68,25 +75,24 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxSize()
                 .width(20.dp)
-                .padding(top = 150.dp),
-            verticalArrangement = Arrangement.Center
+                .padding(top = 80.dp),
+            verticalArrangement = Arrangement.Center,
         ){
                 Text(
                     text = stringResource(
                         R.string.hello
                     ),
+                    modifier = Modifier
+                        .padding(start = 20.dp),
                     color = Color.Black,
                     fontSize = 38.sp,
                     fontWeight = FontWeight.Bold
                 )
-            Column (
 
-            ){
                 Card (
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 60.dp)
-                        .height(705.dp),
+                        .fillMaxSize()
+                        .padding(top = 40.dp),
 
                     shape = RoundedCornerShape(
                         topStart = 35.dp,
@@ -101,8 +107,9 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                     Column (
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(16.dp),
-                        verticalArrangement = Arrangement.SpaceBetween
+                            .padding(start = 20.dp, end = 30.dp),
+                        verticalArrangement = Arrangement.SpaceBetween,
+                        horizontalAlignment = Alignment.CenterHorizontally,
 
                     ){
                         Row (
@@ -110,7 +117,8 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                 .fillMaxWidth()
                         ){
                             Column (
-
+                                modifier = Modifier,
+                                horizontalAlignment = Alignment.CenterHorizontally,
                             ){
                                 Image(
                                     painter = painterResource(
@@ -120,16 +128,16 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                         R.string.image
                                     ),
                                     modifier = Modifier
-                                        .padding(top = 50.dp)
-                                        .height(180.dp)
-                                        .width(180.dp)
+                                        .padding(top = 60.dp)
+                                        .height(170.dp)
+                                        .width(176.dp)
 
                                 )
                                 Button(
                                     onClick = {},
-                                    shape = RoundedCornerShape(20.dp),
+                                    shape = RoundedCornerShape(16.dp),
                                     colors = ButtonDefaults.buttonColors(
-                                        containerColor = Color(0xFFE91E63)
+                                        containerColor = Color(0xFF0D27BE)
                                     )
 
                                 ) {
@@ -139,8 +147,7 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                         ),
                                         fontSize = 20.sp,
                                         modifier = Modifier
-                                            .padding( 3.dp)
-
+                                            .padding(end = 5.dp)
                                     )
 
                                 }
@@ -148,6 +155,8 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
 
 
                             Column (
+                                modifier = Modifier,
+                                horizontalAlignment = Alignment.CenterHorizontally,
 
                             ){
                                 Image(
@@ -165,9 +174,10 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                 )
                                 Button(
                                     onClick = {},
-                                    shape = RoundedCornerShape(20.dp),
+                                    shape = RoundedCornerShape(16.dp),
                                     colors = ButtonDefaults.buttonColors(
-                                        containerColor = Color(0xFF2439AF)
+                                        containerColor = Color(0xFF009688)
+
                                     )
 
                                 ) {
@@ -177,7 +187,7 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                         ),
                                         fontSize = 20.sp,
                                         modifier = Modifier
-                                            .padding(end = 3.dp)
+                                            .padding(end = 5.dp)
 
                                     )
 
@@ -185,93 +195,100 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                             }
 
                         }
-                    }
+                        OutlinedTextField(
+                            value = nameOne.value,
+                            onValueChange = {
+                                nameOne.value = it
 
-                    OutlinedTextField(
-                        value = nameNumber.value,
-                        onValueChange = {
-                            nameNumber.value = it
-
-                        },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 20.dp),
-                        keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Number,
-                        ),
-                        leadingIcon = {
-                            Icon(
-                                imageVector = Icons.Default.Numbers,
-                                contentDescription = "",
-                                tint = Color(0xFF2C612C)
-                            )
-                        },
-
-                        )
-                    OutlinedTextField(
-
-                        value = nameNumber.value,
-                        onValueChange = {
-                            nameNumber.value = it
-
-                        },
-                        modifier = Modifier
-
-                            .fillMaxWidth()
-                            .padding(top = 20.dp),
-                        keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Number,
-                        ),
-                        leadingIcon = {
-                            Icon(
-                                imageVector = Icons.Default.Balance,
-                                contentDescription = "",
-                                tint = Color(0xFF2C642B)
-                            )
-                        },
-                    )
-                    OutlinedTextField(
-                        value = nameNumber.value,
-                        onValueChange = {
-                            nameNumber.value = it
-                        },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 20.dp),
-                        keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Number,
-                        ),
-                        leadingIcon = {
-                            Icon(
-                                imageVector = Icons.Default.Height,
-                                contentDescription = "",
-                                tint = Color(0xFF2B672B)
-                            )
-                        },
-                    )
-                    Button(
-                        onClick = {},
-                        shape = RoundedCornerShape(10.dp)
-
-                    ) {
-                        Text(
-                            text = stringResource(
-                                R.string.calculate
-                            ),
-                            fontSize = 35.sp,
+                            },
                             modifier = Modifier
-                                .padding(3.dp)
+                                .fillMaxWidth()
+                                .padding(top = 40.dp),
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Number
+                            ),
+                            leadingIcon = {
+                                Icon(
+                                    imageVector = Icons.Default.Numbers,
+                                    contentDescription = "",
+                                    tint = Color(0xFF2C612C)
+                                )
+                            },
 
+                            )
+                        OutlinedTextField(
 
+                            value = nameTwo.value,
+                            onValueChange = {
+                                nameTwo.value = it
+
+                            },
+                            modifier = Modifier
+
+                                .fillMaxWidth()
+                                .padding(top = 20.dp),
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Number,
+                            ),
+                            leadingIcon = {
+                                Icon(
+                                    imageVector = Icons.Default.Balance,
+                                    contentDescription = "",
+                                    tint = Color(0xFF2C642B)
+                                )
+                            },
                         )
+                        OutlinedTextField(
+                            value = nameThree.value,
+                            onValueChange = {
+                                nameThree.value = it
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 20.dp),
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Number,
+                            ),
+                            leadingIcon = {
+                                Icon(
+                                    imageVector = Icons.Default.Height,
+                                    contentDescription = "",
+                                    tint = Color(0xFF2B672B)
+                                )
+                            },
+                        )
+                        Button(
+                            modifier = Modifier
+                                .padding(top = 60.dp),
+
+                            onClick = {},
+                            shape = RoundedCornerShape(10.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(0xFF009688)
+                            )
+
+                        ) {
+                            Text(
+                                text = stringResource(
+                                    R.string.calculate
+                                ),
+                                fontSize = 35.sp,
+                                modifier = Modifier
+                                    .padding(3.dp)
+
+
+                            )
+                        }
+
                     }
+
 
 
 
                 }
 
-            }
-            }
+
+        }
 
 
 
@@ -279,6 +296,6 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
 }
 @Preview(showSystemUi = true)
 @Composable
-private fun UserDataPreview(){
+private fun HomeScreenPreview(){
     UserDataScreen()
 }

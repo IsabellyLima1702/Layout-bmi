@@ -15,6 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.senai.sp.jandira.bmi.screens.HomeScreen
+import br.senai.sp.jandira.bmi.screens.ResultScreen
 import br.senai.sp.jandira.bmi.screens.UserDataScreen
 import br.senai.sp.jandira.bmi.ui.theme.BMITheme
 
@@ -23,8 +24,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             BMITheme {
-                //    HomeScreen()
-                //   UserDataScreen()
+                  //  HomeScreen()
+                 //   UserDataScreen()
+                //    ResultScreen()
+
 
                 var navegacao = rememberNavController()
 
@@ -34,6 +37,7 @@ class MainActivity : ComponentActivity() {
                 ){
                     composable("home"){ HomeScreen(navegacao) }
                     composable("dados"){ UserDataScreen() }
+                    composable("resultados"){ ResultScreen() }
                 }
             }
         }
