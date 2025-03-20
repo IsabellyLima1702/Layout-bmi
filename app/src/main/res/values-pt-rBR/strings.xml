@@ -14,4 +14,5 @@
         <string name="image">Image</string>
         <string name="result">Seu Resultado BMI</string>
         <string name="obesity">You have Class I Obesity.</string>
+        <string name="data">30,6</string>
 </resources>

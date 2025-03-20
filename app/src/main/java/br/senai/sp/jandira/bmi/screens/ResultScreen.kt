@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.bmi.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -10,7 +11,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -46,11 +49,12 @@ import br.senai.sp.jandira.bmi.R
      Box(
          modifier = Modifier
              .fillMaxSize()
+             .fillMaxSize()
              .background(
                  brush = Brush.horizontalGradient(
                      listOf(
-                         Color(0xFFC0EF7D),
-                         Color(0xFF88BE58)
+                         Color(0xFFEFAF69),
+                         Color(0xFFE78921)
                      )
                  )
              )
@@ -89,6 +93,53 @@ import br.senai.sp.jandira.bmi.R
 
              ){
 
+                 Column (
+                     modifier = Modifier
+                         .fillMaxSize()
+                         .padding(top = 30.dp,start = 112.dp),
+                     verticalArrangement = Arrangement.SpaceBetween,
+                     horizontalAlignment = Alignment.CenterHorizontally
+                 ) {
+                         Card(
+                             modifier = Modifier
+                                 .size(160.dp)
+                                 .padding(0.dp),
+                             shape = CircleShape,
+                             border = BorderStroke(
+                                 10.dp,
+                                 brush = Brush.horizontalGradient(
+                                     listOf(
+                                         Color(0xFFFF9800),
+                                         Color(0xFFFF9800)
+                                     )
+                                 )
+                             )
+                         ) {
+
+                             Text(
+                                 text = stringResource(
+                                     R.string.data
+                                 ),
+                                 modifier = Modifier
+                                     .padding(top = 50.dp, start = 32.dp),
+                                 fontSize = 50.sp,
+                                 fontWeight = FontWeight.Bold,
+                                 color = Color.Black
+
+                             )
+                         }
+                     }
+                     Text(
+                         text = stringResource(
+                             R.string.obesity
+                         ),
+                         modifier = Modifier
+                             .padding(end = 1.dp, bottom = 450.dp),
+                         fontSize = 25.sp,
+                         fontWeight = FontWeight.Medium,
+                         color = Color.Black
+                     )
+                 }
              }
 
          }

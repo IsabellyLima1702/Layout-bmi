@@ -62,11 +62,11 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-        .background(
+            .background(
                 brush = Brush.horizontalGradient(
                     listOf(
-                        Color(0xFFC0EF7D),
-                        Color(0xFF88BE58)
+                        Color(0xFFEFAF69),
+                        Color(0xFFE78921)
                     )
                 )
             )
@@ -176,7 +176,7 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                     onClick = {},
                                     shape = RoundedCornerShape(16.dp),
                                     colors = ButtonDefaults.buttonColors(
-                                        containerColor = Color(0xFF009688)
+                                        containerColor = Color(0xFFE12F59)
 
                                     )
 
@@ -211,7 +211,7 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                 Icon(
                                     imageVector = Icons.Default.Numbers,
                                     contentDescription = "",
-                                    tint = Color(0xFF2C612C)
+                                    tint = Color(0xFFEC8666)
                                 )
                             },
 
@@ -234,7 +234,7 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                 Icon(
                                     imageVector = Icons.Default.Balance,
                                     contentDescription = "",
-                                    tint = Color(0xFF2C642B)
+                                    tint = Color(0xFFEC8666)
                                 )
                             },
                         )
@@ -253,7 +253,7 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                 Icon(
                                     imageVector = Icons.Default.Height,
                                     contentDescription = "",
-                                    tint = Color(0xFF2B672B)
+                                    tint = Color(0xFFEC8666)
                                 )
                             },
                         )
@@ -264,7 +264,7 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                             onClick = {},
                             shape = RoundedCornerShape(10.dp),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = Color(0xFF009688)
+                                containerColor = Color(0xFFF68B69)
                             )
 
                         ) {
