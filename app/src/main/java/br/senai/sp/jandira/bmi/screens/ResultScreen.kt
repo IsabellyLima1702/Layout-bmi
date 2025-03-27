@@ -1,5 +1,7 @@
 package br.senai.sp.jandira.bmi.screens
 
+import android.content.Context
+import android.os.Build.VERSION_CODES.R
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -34,6 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -45,6 +48,9 @@ import br.senai.sp.jandira.bmi.R
 
 @Composable
  fun ResultScreen(){
+    val context = LocalContext.current
+    val userFile = context
+        .getSharedPreferences("userFile", Context.MODE_PRIVATE)
 
      Box(
          modifier = Modifier
@@ -68,7 +74,7 @@ import br.senai.sp.jandira.bmi.R
          ){
              Text(
                  text = stringResource(
-                     R.string.result
+                     br.senai.sp.jandira.bmi.R.string.result
                  ),
                  modifier = Modifier
                      .padding(start = 20.dp),
@@ -96,50 +102,42 @@ import br.senai.sp.jandira.bmi.R
                  Column (
                      modifier = Modifier
                          .fillMaxSize()
-                         .padding(top = 30.dp,start = 112.dp),
+                         .padding(top = 30.dp,start = 1.dp),
                      verticalArrangement = Arrangement.SpaceBetween,
                      horizontalAlignment = Alignment.CenterHorizontally
                  ) {
-                         Card(
-                             modifier = Modifier
-                                 .size(160.dp)
-                                 .padding(0.dp),
-                             shape = CircleShape,
-                             border = BorderStroke(
-                                 10.dp,
-                                 brush = Brush.horizontalGradient(
-                                     listOf(
-                                         Color(0xFFFF9800),
-                                         Color(0xFFFF9800)
-                                     )
+                     Card(
+                         modifier = Modifier
+                             .size(160.dp)
+                             .padding(0.dp),
+                         shape = CircleShape,
+                         border = BorderStroke(
+                             10.dp,
+                             brush = Brush.horizontalGradient(
+                                 listOf(
+                                     Color(0xFFFF9800),
+                                     Color(0xFFFF9800)
                                  )
                              )
-                         ) {
+                         )
+                     ) {
 
-                             Text(
-                                 text = stringResource(
-                                     R.string.data
-                                 ),
-                                 modifier = Modifier
-                                     .padding(top = 50.dp, start = 32.dp),
-                                 fontSize = 50.sp,
-                                 fontWeight = FontWeight.Bold,
-                                 color = Color.Black
+                         Text(
+                             text = stringResource(
+                                 br.senai.sp.jandira.bmi.R.string.data
+                             ),
+                             modifier = Modifier
+                                 .padding(top = 50.dp, start = 32.dp),
+                             fontSize = 50.sp,
+                             fontWeight = FontWeight.Bold,
+                             color = Color.Black
 
-                             )
-                         }
+                         )
+
                      }
-                     Text(
-                         text = stringResource(
-                             R.string.obesity
-                         ),
-                         modifier = Modifier
-                             .padding(end = 1.dp, bottom = 450.dp),
-                         fontSize = 25.sp,
-                         fontWeight = FontWeight.Medium,
-                         color = Color.Black
-                     )
+
                  }
+
              }
 
          }
@@ -152,5 +150,3 @@ import br.senai.sp.jandira.bmi.R
 private fun UserDataPreview(){
     ResultScreen()
 }
-
-

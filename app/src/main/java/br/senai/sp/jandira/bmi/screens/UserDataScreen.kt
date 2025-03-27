@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.bmi.screens
 
+import android.content.Context
 import android.service.autofill.UserData
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -35,9 +36,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -48,14 +51,20 @@ import br.senai.sp.jandira.bmi.R
 @Composable
 fun UserDataScreen(modifier: Modifier = Modifier) {
 
+    val context = LocalContext.current
+    val userFile = context
+        .getSharedPreferences("userFile", Context.MODE_PRIVATE)
+
+    val userName = userFile.getString("user_name", "User name not found!")
+
     var nameOne = remember {
-        mutableStateOf("Age")
+        mutableStateOf("")
     }
     var nameTwo = remember {
-        mutableStateOf("Weight")
+        mutableStateOf("")
     }
     var nameThree = remember {
-        mutableStateOf("Height")
+        mutableStateOf("")
     }
 
 
@@ -79,9 +88,7 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.Center,
         ){
                 Text(
-                    text = stringResource(
-                        R.string.hello
-                    ),
+                    text = stringResource(R.string.hi) + ", ${userName}!",
                     modifier = Modifier
                         .padding(start = 20.dp),
                     color = Color.Black,
@@ -128,13 +135,15 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                         R.string.image
                                     ),
                                     modifier = Modifier
-                                        .padding(top = 60.dp)
+                                        .padding(top = 30.dp)
                                         .height(170.dp)
                                         .width(176.dp)
 
                                 )
                                 Button(
-                                    onClick = {},
+                                    onClick = {
+
+                                    },
                                     shape = RoundedCornerShape(16.dp),
                                     colors = ButtonDefaults.buttonColors(
                                         containerColor = Color(0xFF0D27BE)
@@ -167,9 +176,9 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                         R.string.image
                                     ),
                                     modifier = Modifier
-                                        .padding(top = 50.dp)
+                                        .padding(top = 20.dp)
                                         .height(180.dp)
-                                        .width(180.dp)
+                                        .width(185.dp)
 
                                 )
                                 Button(
@@ -203,10 +212,12 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(top = 40.dp),
-                            keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Number
-                            ),
+                                .padding(top = 60.dp),
+                                keyboardOptions = KeyboardOptions(
+                                    keyboardType = KeyboardType.Number,
+                                    imeAction = ImeAction.Next
+                                ),
+
                             leadingIcon = {
                                 Icon(
                                     imageVector = Icons.Default.Numbers,
@@ -214,8 +225,14 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                     tint = Color(0xFFEC8666)
                                 )
                             },
+                            shape = RoundedCornerShape(18.dp),
+                            label = {
+                                Text(
+                                    text = stringResource(R.string.age)
+                                )
+                            },
 
-                            )
+                        )
                         OutlinedTextField(
 
                             value = nameTwo.value,
@@ -229,6 +246,7 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                 .padding(top = 20.dp),
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Number,
+                                imeAction = ImeAction.Next
                             ),
                             leadingIcon = {
                                 Icon(
@@ -237,6 +255,8 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                     tint = Color(0xFFEC8666)
                                 )
                             },
+                            shape = RoundedCornerShape(18.dp),
+                            label = { Text(text = stringResource(R.string.weight)) }
                         )
                         OutlinedTextField(
                             value = nameThree.value,
@@ -248,6 +268,7 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                 .padding(top = 20.dp),
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Number,
+                                imeAction = ImeAction.Done
                             ),
                             leadingIcon = {
                                 Icon(
@@ -256,12 +277,21 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                     tint = Color(0xFFEC8666)
                                 )
                             },
+                            shape = RoundedCornerShape(18.dp),
+                            label = { Text(text = stringResource(R.string.high)) }
                         )
                         Button(
                             modifier = Modifier
-                                .padding(top = 60.dp),
+                                .width(500.dp)
+                                .padding(top = 40.dp),
 
-                            onClick = {},
+                            onClick = {
+                                val editor = userFile.edit()
+                                editor.putInt("user_age", nameOne.value.toInt())
+                                editor.putInt("user_weight", nameTwo.value.toInt())
+                                editor.putFloat("user_height", nameThree.value.toFloat())
+                                editor.apply()
+                            },
                             shape = RoundedCornerShape(10.dp),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = Color(0xFFF68B69)
@@ -272,9 +302,10 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
                                 text = stringResource(
                                     R.string.calculate
                                 ),
-                                fontSize = 35.sp,
+                                fontSize = 25.sp,
                                 modifier = Modifier
                                     .padding(3.dp)
+
 
 
                             )
