@@ -46,10 +46,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import br.senai.sp.jandira.bmi.R
 
 @Composable
-fun UserDataScreen(modifier: Modifier = Modifier) {
+fun UserDataScreen(navegacao: NavHostController?) {
 
     val context = LocalContext.current
     val userFile = context
@@ -327,6 +328,6 @@ fun UserDataScreen(modifier: Modifier = Modifier) {
 }
 @Preview(showSystemUi = true)
 @Composable
-private fun HomeScreenPreview(){
-    UserDataScreen()
+private fun UserDataPreview(){
+    UserDataScreen(navegacao = null)
 }

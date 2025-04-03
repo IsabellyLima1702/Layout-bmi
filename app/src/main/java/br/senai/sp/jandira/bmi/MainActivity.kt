@@ -28,8 +28,8 @@ class MainActivity : ComponentActivity() {
                     startDestination = "home"
                 ){
                     composable("home"){ HomeScreen(navegacao) }
-                    composable("dados"){ UserDataScreen() }
-                    composable("resultados"){ ResultScreen() }
+                    composable("dados"){ UserDataScreen(navegacao) }
+                    composable("resultados"){ ResultScreen(navegacao) }
                 }
             }
         }

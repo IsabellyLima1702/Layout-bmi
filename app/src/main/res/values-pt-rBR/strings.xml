@@ -10,10 +10,16 @@
         <string name="calculate">Calcular</string>
         <string name="image">Image</string>
         <string name="result">Seu Resultado BMI</string>
-        <string name="obesity">Voce tem essa classe.</string>
+        <string name="obesity">Você tem essa classe!</string>
         <string name="data">30,6</string>
         <string name="age">Idade</string>
         <string name="weight">Peso</string>
         <string name="high">Altura</string>
         <string name="name_error_message">O nome do usuário é obrigatório!</string>
+        <string name="obesity_1">Você está com Obesidade Classe 1!</string>
+        <string name="obesity_2">Você está com Obesidade Classe 2!</string>
+        <string name="obesity_3">Você está com Obesidade Classe 3!</string>
+        <string name="normal">Parabéns. O seu peso está normal!</string>
+        <string name="under_weight">Alerta! Você está abaixo do peso ideal!</string>
+        <string name="over_weight">Atenção! Você está um pouco acima do peso ideal!</string>
 </resources>
