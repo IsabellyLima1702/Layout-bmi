@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import br.senai.sp.jandira.bmi.screens.HomeScreen
 import br.senai.sp.jandira.bmi.screens.ResultScreen
 import br.senai.sp.jandira.bmi.screens.UserDataScreen
+import br.senai.sp.jandira.bmi.screens.components.BmiLevel
 import br.senai.sp.jandira.bmi.ui.theme.BMITheme
 
 class MainActivity : ComponentActivity() {
@@ -30,6 +31,8 @@ class MainActivity : ComponentActivity() {
                     composable("home"){ HomeScreen(navegacao) }
                     composable("dados"){ UserDataScreen(navegacao) }
                     composable("resultados"){ ResultScreen(navegacao) }
+                    composable(""){ BmiLevel() }
+
                 }
             }
         }

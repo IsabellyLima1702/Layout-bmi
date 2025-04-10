@@ -38,6 +38,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -48,6 +49,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import br.senai.sp.jandira.bmi.R
+import br.senai.sp.jandira.bmi.calcs.bmiCalculate
+import br.senai.sp.jandira.bmi.model.BmiStatus
+import br.senai.sp.jandira.bmi.screens.components.BmiLevel
+import br.senai.sp.jandira.bmi.ui.theme.utils.convertNumberToLocale
 import java.util.Locale
 
 @Composable
@@ -59,6 +64,13 @@ import java.util.Locale
     val userWeight = userFile.getInt("user_weight", 0)
     val userHeight = userFile.getFloat("user_height", 0.0F)
     val userAge = userFile.getInt("user_age", 0)
+
+    val bmi = bmiCalculate(
+        userWeight,
+        userHeight.toDouble().div(100)
+    )
+
+
      Box(
          modifier = Modifier
              .fillMaxSize()
@@ -83,8 +95,7 @@ import java.util.Locale
                  text = stringResource(
                      br.senai.sp.jandira.bmi.R.string.result
                  ),
-                 modifier = Modifier
-                     .padding(top = 20.dp),
+                 modifier = Modifier,
                  color = Color.Black,
                  fontSize = 30.sp,
                  fontWeight = FontWeight.Bold
@@ -118,33 +129,25 @@ import java.util.Locale
                          .size(160.dp),
                      shape = CircleShape,
                      border = BorderStroke(
-                         10.dp,
-                         brush = Brush.horizontalGradient(
-                             listOf(
-                                 Color(0xFFFF9800),
-                                 Color(0xFFFF9800)
-                             )
-                         )
+                         width = 4.dp,
+                         color = bmi.bmiColor
                      )
                  ) {
 
                      Text(
-                         text = stringResource(
-                             br.senai.sp.jandira.bmi.R.string.data
+                         text = String.format(
+                             Locale.getDefault(),
+                             "%.1f",
+                             bmi.bmi.second
                          ),
-                         modifier = Modifier
-                             .padding(top = 50.dp, start = 32.dp),
-                         fontSize = 50.sp,
-                         fontWeight = FontWeight.Bold,
-                         color = Color.Black
-
+                         fontSize = 48.sp,
+                         color = Color.Black,
+                         fontWeight = FontWeight.Bold
                      )
 
                  }
                  Text(
-                     text = stringResource(
-                         br.senai.sp.jandira.bmi.R.string.obesity
-                     ),
+                     text = bmi.bmi.first,
                      modifier = Modifier
                          .padding(top = 23.dp),
                      fontSize = 25.sp,
@@ -161,7 +164,7 @@ import java.util.Locale
                      Row (
                          modifier = Modifier
                              .background(
-                                 color = Color(0xFFE3A156)
+                                 color = Color(0xFFF6C792)
                              )
                              .padding(6.dp)
                      ){
@@ -230,11 +233,59 @@ import java.util.Locale
                                  fontSize = 25.sp
                              )
                          }
-
                      }
+                        Column(
+                            modifier = Modifier
+                                .padding(top = 16.dp, bottom = 16.dp)
+                                .fillMaxWidth()
+                                .height(250.dp)
+                        ) {
+                            BmiLevel(
+                                bulletColor = colorResource(br.senai.sp.jandira.bmi.R.color.light_blue),
+                                leftText1 = stringResource(br.senai.sp.jandira.bmi.R.string.underweight),
+                                rightText2 = "<${convertNumberToLocale(18.5)}",
+                                isFilled = if(bmi.bmiStatus == BmiStatus.UNDER_WEIGHT) true else false
+                            )
+                            BmiLevel(
+                                bulletColor = colorResource(br.senai.sp.jandira.bmi.R.color.light_green),
+                                leftText1 = stringResource(br.senai.sp.jandira.bmi.R.string.underweight),
+                                rightText2 = "<${convertNumberToLocale(18.5)}",
+                                isFilled = if(bmi.bmiStatus == BmiStatus.NORMAL) true else false
+                            )
+                            BmiLevel(
+                                bulletColor = colorResource(br.senai.sp.jandira.bmi.R.color.yellow),
+                                leftText1 = stringResource(br.senai.sp.jandira.bmi.R.string.underweight),
+                                rightText2 = "<${convertNumberToLocale(18.5)}",
+                                isFilled = if(bmi.bmiStatus == BmiStatus.OVER_WEIGHT) true else false
+
+                            )
+                            BmiLevel(
+                                bulletColor = colorResource(br.senai.sp.jandira.bmi.R.color.light_orange),
+                                leftText1 = stringResource(br.senai.sp.jandira.bmi.R.string.underweight),
+                                rightText2 = "<${convertNumberToLocale(18.5)}",
+                                isFilled = if(bmi.bmiStatus == BmiStatus.OBESITY_1) true else false
+
+                            )
+                            BmiLevel(
+                                bulletColor = colorResource(br.senai.sp.jandira.bmi.R.color.dark_orange),
+                                leftText1 = stringResource(br.senai.sp.jandira.bmi.R.string.underweight),
+                                rightText2 = "<${convertNumberToLocale(18.5)}",
+                                isFilled = if(bmi.bmiStatus == BmiStatus.OBESITY_2) true else false
+
+                            )
+
+                            BmiLevel(
+                                bulletColor = colorResource(br.senai.sp.jandira.bmi.R.color.red),
+                                leftText1 = stringResource(br.senai.sp.jandira.bmi.R.string.underweight),
+                                rightText2 = "<${convertNumberToLocale(18.5)}",
+                                isFilled = if(bmi.bmiStatus == BmiStatus.OBESITY_3) true else false
+
+                            )
+                        }
+
                      Button(
                          onClick = {
-                             navegacao!!.navigate("dados")
+                             navegacao!!.navigate("resultados")
                          },
                          shape = RoundedCornerShape(10.dp),
                          modifier = Modifier
